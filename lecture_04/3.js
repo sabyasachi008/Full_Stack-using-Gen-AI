@@ -237,7 +237,7 @@
 // setTimeout(() => {
 //     console.log(9)
 // }, 0)
-
+// 1 2 3 4 5 6 7 8 9
 
 // // ----------------------------------------------//
 
@@ -270,7 +270,6 @@
 
 new Promise((resolve, reject) => {
     reject("Error")         //Jo pehela ussi se matlab hoga
-    
     resolve(1)
     resolve(2)
 }).then((value)=> {
