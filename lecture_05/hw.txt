@@ -1,0 +1,22 @@
+Problem Statement: Color Changer App
+Objective: Create a simple app that changes the background color
+when you click a button.
+Requirements:
+
+Display:
+
+Show the current color name on the screen
+
+
+Change Color Button:
+
+When user clicks the button, change the background color
+Update the color name text
+
+
+Colors to Use:
+
+Use 4-5 simple colors: Red, Blue, Green, Yellow, Pink
+Cycle through them one by one
+
+documnet.body.style.background= color;
