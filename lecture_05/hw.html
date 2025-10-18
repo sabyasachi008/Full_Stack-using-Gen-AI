@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ColorCounter</title>
+
+    <style>
+
+        body {
+
+            background-color:f4f4f4;
+            display:flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+
+        }
+
+        .container {
+            background-color: #f2f2f2;
+            align-items: center;
+            text-align: center;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 50px auto; 
+            max-width: 800px; 
+            justify-content: center;
+            box-shadow: 0 0 10px rgba(245, 0, 0, 0.949);
+            
+            
+        }
+
+        .btn {
+            cursor: pointer;
+            padding:10px 0 10px 0; /*Top right botton left*/
+            margin: auto;
+            background-color: rgba(255, 158, 249, 0.966);
+            color: white;
+            height: 30px;
+            width: 100px;
+            border: none;
+            border-radius:6px;
+            box-shadow: 0 0 0 2 rgba(0, 0, 0, 0.3);
+            transition: background-color 0.3s ease-in-out;
+        }
+        .btn-reset {
+            cursor: pointer;
+            padding:10px 0 10ox 0;      /*Top right botton left*/
+            height: 30px;
+            width: 100px;
+            background-color: rgba(255, 158, 249, 0.966);
+            color: white;
+            border: none;
+            border-radius:6px;
+            box-shadow: 0 0 0 2 rgba(0, 0, 0, 0.3);
+            transition: background-color 0.3s ease-in-out;
+        }
+        
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>Color Grey</h1>
+
+        <div class="button">
+            <button class="btn" onclick="colorChange()">Change</button>
+
+            <button class="btn-reset" onclick="resetColor()">Reset</button>
+        </div>
+    </div>
+    
+</body>
+<script>
+    let colors = ["Red", "Blue", "Green", "Yellow", "Pink"];
+    let index = 0;
+    function updateColor() {
+        document.getElementsByName("color").textContent = color+" Color";
+    }
+    function colorChange() {
+        while(true) {
+            document.body.style.backgroundColor = colors[index];
+            index = (index + 1) % colors.length;        //this is used to ierate through the array in a circular manner.
+            updateColor();
+            break;
+        }
+    }
+
+    function resetColor() {
+        document.body.style.backgroundColor = "White";
+        updateColor();
+    }
+</script>
+</html>
