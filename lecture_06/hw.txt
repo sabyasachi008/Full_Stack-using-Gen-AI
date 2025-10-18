@@ -1,0 +1,9 @@
+
+
+create a notes adding app
+
+
+render the notes in li format
+
+use text-area property
+

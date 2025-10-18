@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Top Map</title>
+
+    <style>
+      body {
+        font-family: Arial, Helvetica, sans-serif;
+        max-width: 600px;
+        margin: 50px auto;
+        padding: 20px;
+        background: #d2add29d;
+        max-height: 600px;
+        justify-content: center;
+        display: flex;
+      }
+      .main-div {
+        background: #fbd7fb9d;
+        border: none;
+        border-radius: 5px;
+        display: flex;
+        flex-direction: column;
+        margin: 50px auto;
+        padding: 20px;
+        max-width: 600px;
+        justify-content: center;
+        align-items: center;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+      }
+
+      h1 {
+        text-align: center;
+        color: #333;
+      }
+
+      .input-box {
+        display: flex;
+        gap: 10px; /*Gap between the elements*/
+        margin: 20px;
+      }
+
+      .input {
+        flex: 1; /*100/4 -> 25%*/
+        padding: 10px;
+        border: 1px solid #ccc;
+      }
+
+      button {
+        padding: 10px;
+        font-size: 16px;
+        cursor: pointer;
+        background: #4caf50;
+        color: white;
+        border: none;
+      }
+
+      button:hover {
+        background: pink;
+      }
+
+      .delete-btn {
+        background: #f44336;
+        padding: 5px;
+        font-size: 14px;
+      }
+
+      .delete-btn:hover {
+        background: #da190a;
+      }
+      ul {
+        list-style: none;
+        padding: 0;
+      }
+
+      li {
+        background: white;
+        padding: 10px;
+        margin-bottom: 5px;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+
+      .completed {
+        text-decoration: line-through;
+        opacity: 0.6;
+      }
+
+      .todo-text {
+        flex: 1;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="main-div">
+      <h1>ToDo List</h1>
+      <div class="input-box">
+        <input type="text" id="todoInput" placeholder="Add a new Task" />
+        <button onClick="addTodo()">Add</button>
+      </div>
+
+      <ul id="todoList"></ul>
+    </div>
+    <script>
+      let todos = []; //create an array which will store the inputed in the input area.
+
+      function addTodo() {
+        //adds task to the array
+        const input = document.getElementById("todoInput");
+        const text = input.value.trim(); //remove any leading or trailing spaces
+
+        if (text === "") {
+          //if there is no input we dont have anything to add to the array
+          return;
+        }
+
+        todos.push({
+          //add each task to the array with an id as date.now to keep track and unique which would help in deleting the task
+          id: Date.now(),
+          text: text,
+          completed: false,
+        });
+
+        input.value = ""; //clear the input field  after adding the given task to the array
+        //so that we can add multiple task.
+        render();
+      }
+
+      function deleteTodo(id) {
+        todos = todos.filter((todo) => todo.id !== id); //will create a new array excluding the todo with the given id
+        render();
+      }
+
+      function toggleTodo(id) {
+        todos = todos.map((todo) =>
+          todo.id === id
+            ? {
+                ...todo,
+                completed: !todo.completed,
+              }
+            : todo
+        );
+
+        render();
+      }
+
+      function render() {
+        const list = document.getElementById("todoList");
+        //since dynamic filling of elements are taking place so we use backticks
+        list.innerHTML = todos.map(
+          (todo) =>
+            `
+                <li>
+                    <input type="checkbox"
+                    ${todo.completed ? "checked" : ""}
+                    onchange="toggleTodo(${todo.id})"
+                    />
+                    <span class="todo-text ${
+                      todo.completed ? "completed" : ""
+                    }">${todo.text}</span>
+
+                    <button class="delete-btn" onClick="deleteTodo(${
+                      todo.id
+                    })">Delete</button>
+                    </li>
+                `
+        );
+      }
+      //Event listeners in JavaScript are used to detect and respond to events that occur in the browser or on a specific element. Events can be user interactions like clicks, mouse movements, keyboard presses, or system events like page loads or form submissions.
+      document.getElementById("todoInput").addEventListener("keypress", (e) => {
+        if (e.key === "Enter") addTodo();
+      });
+    </script>
+  </body>
+</html>
