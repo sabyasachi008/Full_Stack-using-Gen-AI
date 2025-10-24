@@ -1,113 +1,136 @@
- <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
 
     <style>
-        body {
-            background:antiquewhite;
-            padding:10px;
-            margin:50px auto;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            display: flex;
-            flex-direction: column;
-            
-        }
-        h1 {
-            text-align: center;
-        }
-    
-        .main {
-            /* background-color: aqua; */
-            display:flex;
-            flex-direction: column;
-            border-radius: 6px;
-            margin: 10px auto;
-            padding: 10px;
-            max-width: 800px;
-            justify-content: center;
-            align-items: center;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
-        }
+      body {
+        background: antiquewhite;
+        padding: 10px;
+        margin: 50px auto;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        display: flex;
+        flex-direction: column;
+      }
+      h1 {
+        text-align: center;
+      }
 
-        input {
-            padding: 10px;
-            width: 600px;
-            border-radius: 6px;
-            border: none;
-            cursor:text;
-        height: 50px
-        }
+      .main {
+        display: flex;
+        flex-direction: column;
+        border-radius: 6px;
+        margin: 10px auto;
+        padding: 10px;
+        max-width: 800px;
+        justify-content: center;
+        align-items: center;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+      }
 
-        .btn {
-            padding: 10px;
-        }
-       
-        
-        .btn-add{
-            background: green;
-            cursor:pointer;
-            border: none;
-            border-radius: 6px;
-            padding: 10px;
-            color: white;
-        }
-        .btn-add:hover {
-            background: greenyellow
-        }
+      input {
+        padding: 10px;
+        width: 600px;
+        border-radius: 6px;
+        border: none;
+        cursor: text;
+        height: 50px;
+      }
 
+      .btn {
+        padding: 10px;
+      }
 
+      .btn-add {
+        background: green;
+        cursor: pointer;
+        border: none;
+        border-radius: 6px;
+        padding: 10px;
+        color: white;
+      }
+      .btn-add:hover {
+        background: greenyellow;
+      }
 
+      .noteList {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 15px;
+        margin: 20px auto;
+        padding: 20px;
+        max-width: 800px;
+      }
 
+      .note {
+        background-color: #f4f4f4;
+        border-radius: 6px;
+        padding: 15px;
+        margin: 5px 0;
+        box-shadow: 0 0 0 10 rgba(0, 0, 0, 0.3);
+        flex-direction: wrap;
+      }
     </style>
-</head>
-<body>
+  </head>
+  <body>
     <div class="main">
-    <h1>Notes App</h1>
-    <div class="container">
-
-        <input type="text" class="inputclass" id="notes" placeholder="Type your note here !">
+      <h1>Notes App</h1>
+      <div class="container">
+        <textarea
+          name="txtbox"
+          id="notes"
+          placeholder="Write you note here..."
+          rows="9"
+          cols="90"
+        ></textarea>
         <div class="btn">
-            <button class="btn-add" onClick="addNote()">Add</button>
+          <button class="btn-add" onClick="addNotes()">Add</button>
         </div>
+      </div>
     </div>
-    <ul id="noteslist"></ul>
-    </div>
+    <div class="noteList" id="list">No notes yet, Add your first note!</div>
 
     <script>
+      let notes = [];
 
-let note= []       //array to store the notes
+      function addNotes() {
+        const input = document.getElementById("notes");
+        const text = input.value.trim();
 
-function addNote() {
-    const input = document.getElementById("notes");
-    const text = input.value.trim();
+        if (text === "") {
+          return;
+        }
+        notes.push({
+          id: Date.now,
+          text: text,
+        });
+        input.value = "";
 
-    if(text === "") {
-        return;
-    }
+        render();
+      }
 
-    note.push({
+      function render() {
+        const list = document.getElementById("list");
 
-        id:Date.now(),
-        text: text,
-        read: false
-    });            //to add element to the array
-    
-    render();
+        list.innerHTML = notes
+          .map(
+            (note) => `
+            <div class="note">
+                <p>${note.text}</p>
+            </div>
+        `
+          )
+          .join(""); //to join the 2 list with no spaces within other with it would give comas
+      }
 
-}
-
-
-
-
-function render() {
-    const list = document.getElementById("noteslist");
-
-}
+      document.getElementById("notes").addEventListener("keypress",(e) => {
+        if(e.key ==="Enter") 
+        addNotes();
+      });
     </script>
-</body>
+  </body>
 </html>
