@@ -1,0 +1,3 @@
+//instead of const res = await fetch(`https://www.omdbapi.com/?apikey=${API_KEY}&i=${id}`);  
+
+const res = await fetch('url of from the api website');

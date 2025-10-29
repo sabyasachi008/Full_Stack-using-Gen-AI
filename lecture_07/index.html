@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Movie App</title>
+
+    <style>
+        body {
+      font-family: sans-serif;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 20px;
+      background: #111;
+      color: white;
+    }
+    input, button {
+      padding: 8px;
+      margin: 5px;
+      border: 1px solid #444;
+      border-radius: 4px;
+      background: #222;
+      color: white;
+    }
+    button {
+      background: #e50914;
+      cursor: pointer;
+    }
+    .grid {
+      display: grid;
+      /* grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); */
+      grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+      margin: 10px auto 0 auto; 
+      padding: 10px;
+      gap : 15px;
+      background: #18181818
+    }
+    .card {
+      background: #222;
+      padding: 10px;
+      box-shadow: 0 4px 16px rgba(22, 21, 21, 0.25);
+      border-radius: 8px;
+      transition: transform 0.2, box-shadow 0.2s;
+      cursor: pointer;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      position: relative;
+      text-align: center;
+      
+    }
+    .card:hover {
+      transform: translateY(-8px) scale(1.03);
+      box-shadow: 0 8px 32px rgba(0,0,0,0.5);
+    }
+    .card img {
+      width: 100%;
+      height: 200px;
+      border-radius: 4px;
+      aspect-ratio: 8/11;
+      object-fit: cover;
+    }
+    .hidden { display: none; }
+    .detail {
+      margin-top: 20px;
+      padding: 15px;
+      background: #222;
+      border-radius: 4px;
+      justify-content: center;
+      align-items: baseline;
+    }
+    .detail img {
+      width: 100px;
+      margin-right: 15px;
+      border-radius: 4px;
+    }
+        
+    </style>
+</head>
+<body>
+    <h1>Movie Finder</h1>
+    <input type="text" id="search" placeholder="Search Movies"/>
+
+    <button onclick="search()">Search</button>
+
+    <div id="results" class="grid"></div>
+    
+    <div id="detail" class="detail hidden">
+
+<!--This is set by the innerHTML property used in the js code in script section -->        
+    </div>
+    
+</body>
+
+<script>
+const API_KEY='b1ce5ebf';
+
+
+//Dynamic data 
+async function search() {
+
+    const query = document.getElementById('search').value.trim();
+
+    if(!query) return;
+
+     const res = await fetch(`https://www.omdbapi.com/?apikey=${API_KEY}&s=${encodeURIComponent(query)}`);
+
+    const data = await res.json();
+
+    // console.log(res);        //for debugging purpose 
+    // {
+    //     'name' : 11,
+    // }
+
+    const results = document.getElementById('results');
+    const detail = document.getElementById('detail');
+    detail.classList.add('hidden');
+
+    if(data.Response ==='True') {
+
+        results.innerHTML = data.Search.map(
+            movie => `
+            <div class="card" onclick="showDetail('${movie.imdbID}')">
+                <img src ="${movie.Poster !== 'N/A' ? movie.Poster:''}"/>
+                <h3>${movie.Title}</h3>
+                <p>${movie.Year}</p>
+                </div>
+            `
+        ).join('');         //add space to the result's value
+    }
+    else {
+        results.innerHTML=`<p>${data.error}</p>`;
+    }
+}
+
+async function showDetail(id) {
+    const res = await fetch(`https://www.omdbapi.com/?apikey=${API_KEY}&i=${id}`);  
+
+    const movie = await res.json();         //if we dont use await this would be in an unresolved state so won't be able to fetch the data
+    const poster = movie.Poster !== 'N/A' ? movie.Poster:'';
+
+    document.getElementById('detail').innerHTML=`<img src="${poster}"/>
+
+    <h2> ${movie.Title}</h2>
+    <p><strong> Year: </strong> ${movie.Year}</p>
+    <p> <strong> Genre: </strong> ${movie.Genre}</p>
+    <p><strong> Director: </strong>${movie.Director}</p>
+    <p><strong> Language: </strong>${movie.Language}</p>
+    <p><strong>Plot: </strong>${movie.Plot}</p>
+    <p><strong>IMDB Rating: </strong>${movie.imdbRating}</p>
+    <p><strong>IMDB Votes: </strong>${movie.imdbVotes}</p>    
+    `;
+    //director plot imdbid; done
+
+    document.getElementById('detail').classList.remove('hidden');
+    document.getElementById('results').classList.add('hidden');
+}
+
+
+document.getElementById('search').addEventListener('keypress', (e) =>{ if(e.key ==='Enter') search()
+});
+
+</script>
+</html>
