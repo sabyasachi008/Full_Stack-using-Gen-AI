@@ -4,8 +4,167 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Blogs App</title>
+    <style>
+        body {
+            background: #111;
+            color: #f3f3f3f3;
+            text-align: center;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+        .start {
+            margin-top: 50px;
+        }
+        .results { 
+            margin:10px auto;
+        }
+
+        button {
+            background: #e30510;
+            cursor: pointer;
+            border-radius: 5px;
+            color: white;
+            padding: 10px;
+
+        }
+        input {
+            border-radius: 5px;
+            padding: 10px;
+            margin: 10px;
+
+        }
+        .grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            /* padding: 10px; */
+            margin: 10px auto 10 auto;
+            background:#181818;
+            border-radius: 8px;
+            gap:15px;
+
+        }
+        .card {
+            background: #222;
+            border-radius: 8px;
+            gap: 15px;
+            cursor: pointer;
+            padding: 10px;
+            margin: 10px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            position: relative;
+            text-align: center;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4);
+        }
+        .card:hover {
+            background:#444343
+        }
+        .hidden {display:none}
+        .detail {
+            margin-top:20px;
+            background: #222;
+            border-radius: 4px;
+            justify-content: flex-start;
+            align-items: center;
+            display:grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 10px;
+        }
+
+    </style>
 </head>
 <body>
     
+    <div class="start">
+        <h1>Blogs App</h1>
+    </div>
+
+    <button onclick="loadAllBlogs()">load All blogs</button>
+    <div class="loading hidden" id="loading">Loading Blogs...</div>
+    <div id="results" class="grid"></div>
+    <div id="detail" class="details hidden"></div>
 </body>
+
+<script>
+    const API_URL ="https://dummy-json.mock.beeceptor.com/posts"
+
+    let allBlogs= []
+
+    async function loadAllBlogs() {
+
+        const loading = document.getElementById('loading');
+
+        const results = document.getElementById('results');
+
+        const details = document.getElementById('details');
+
+        loading.classList.remove('hidden');
+        detail.classList.add('hidden');
+        results.innerHTML='';
+
+        const res = await fetch(API_URL);
+        const data = await res.json();      //conver the json into -> js object
+
+        allBlogs= data;
+
+        loading.classList.add('hidden');
+
+        displayBlogs(data);
+
+    }
+
+    function displayBlogs(blogs) {
+
+        const result = document.getElementById('results');
+
+        if(Array.isArray(blogs) && blogs.length > 0) {
+
+            results.innerHTML = blogs.map(blog =>
+                `
+                    <div class='card' onclick="showDetail(${blog.id})">
+                        <h3>${blog.title}</h3>
+                        <p>${blog.body ? blog.body.substring(0,200)+"..." : 'No Content'}</p>
+                        </div>
+
+
+                `).join("");
+        }
+        else {
+            results.innerHTML = '<p>No Blogs available</p>'
+        }
+    }
+
+    async function showDetail(id) {
+        const blog = allBlogs.find(b=>b.id ===id);
+
+        if(!blog) {
+            alert('Blog not found');
+            return;
+
+        }
+
+        document.getElementById('detail').innerHTML=`
+        <div class="first">
+            <h3>Blog ID: ${blog.id}</h3>
+            <p><STRONG>Author : </strong>${blog.author || 'Unknown'}</p>
+                </div>
+
+                <div class="second">
+                <h2>${blog.title}</h2>
+                <p><strong>Content:</strong></p>
+                <p>${blog.body}</p>
+                </div>
+            
+            `;
+
+            document.getElementById('detail').classList.remove('hidden');
+            document.getElementById('results').classList.add('hidden');
+
+
+    }   
+    
+    
+   // Load all blogs when page loads
+window.addEventListener('DOMContentLoaded', loadAllBlogs);
+</script>
 </html>

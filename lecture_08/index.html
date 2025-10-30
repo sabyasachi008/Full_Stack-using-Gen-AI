@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mouse Movement App</title>
+    <style>
+        body{
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: darkblue;
+            color: white;
+        }
+        .container{
+            display:flex;
+            text-align: center;
+        }
+        .mouse-event{
+            border: 1px solid red;
+            margin: 40px;
+            min-width: 180px;
+            min-height: 100px;
+            justify-content: center;
+            display: flex;
+            align-items: center;
+            font-size: 20px;
+        }
+        .mouse-event h4{
+            color: lightgray;
+            font-size: 14px;
+        }
+    </style>
+</head>
+
+<body>
+
+<h1> Mouse Movement (Responsiveness )</h1>
+<div class="container">
+    <div class="mouse-event">
+20
+<h4> Mouse X Pos</h4>
+    </div>
+
+    <div class="mouse-event">
+20 
+<h4> Mouse Y Pos</h4>
+    </div>
+
+</div>
+
+<script>
+       
+       //inner html is used to change default 20 value
+       const containerEle = document.querySelector(".container");
+       
+       //mouse move is like a event which is tracking the movement of mouse 
+
+       //Callback -> calls inside a function 
+       window.addEventListener("mousemove", (event) => {
+        containerEle.innerHTML=`
+       <div class="mouse-event">
+        ${event.clientX}
+        <h4>Mouse X Position (px) </h4>
+        </div>
+
+        <div class="mouse-event">${event.clientY}
+            <h4>Mouse Y Position (px) </h4>
+            </div>
+         `
+       })
+        //USE Case -> Zoom in zoom out// white board. 
+    </script>
+
+</body>
+</html>
