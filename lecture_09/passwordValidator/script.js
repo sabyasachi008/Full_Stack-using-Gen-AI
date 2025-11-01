@@ -31,4 +31,9 @@ function checkPassword() {
 
 //Vs code -> No alerts Limitation.
 
-submit.addEventListener("")
+//event listener Keypress enter ->
+pass.addEventListener("keypress", (e) => {
+    if (e.key === 'Enter') {
+        checkPassword();
+    }
+});
