@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Random User Generator</title>
+
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        background: linear-gradient(135deg, #667eea, #764ba2);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 20px;
+      }
+
+      .card {
+        background: rgb(167, 208, 175);
+        border-radius: 20px;
+        padding: 40px;
+        text-align: center;
+        margin-top: 50px;
+      }
+
+      h1 {
+        color: #ae3d3d;
+        margin-bottom: 30px;
+      }
+      button {
+        background: #667eea;
+        border: none;
+        margin-top: 14px;
+        padding: 15px;
+        color: white;
+        font-size: 1rem;
+        border-radius: 20px;
+        cursor: pointer;
+      }
+
+      .user {
+        display: flex;
+        flex-direction: column;
+
+        margin-top: 10px;
+        justify-content: center;
+
+        align-items: center;
+      }
+
+      img {
+        border-radius: 100px;
+        padding: 10px;
+      }
+    </style>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+  </head>
+  <body>
+    <div class="card">
+      <h1>Random User</h1>
+      <div class="user" id="user">
+        <div class="loading">Click to generate User</div>
+        <button onClick="getUser()">Generate User</button>
+      </div>
+    </div>
+    <script src="script.js"></script>
+  </body>
+</html>
