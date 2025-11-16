@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Speech</title>
+</head>
+<body>
+    
+    <div class="container">
+        <div class="app-container">
+
+            <h1>Text To speech</h1>
+            <h3>Exter Text and convert to speech</h3>
+        </div>
+
+        <div class="interaction-container">
+            <textarea name="txt" id="textToConvert" placeholder="Enter text to convert to speech" class="text-control">
+
+            </textarea>
+            <p class="error-para"></p>
+            <button class="btn" id="convertBtn">
+                Play converted sound
+            </button>
+        </div>
+    </div>
+    <script>
+        
+    const text = document.getElementById('textToConvert');
+    const convertBtn = document.getElementById('convertBtn');
+
+    convertBtn.addEventListener('click', function() {
+        const speechSynth = window.speechSynthesis;
+        const enteredText = text.value;
+
+        if(!speechSynth.speaking && !speechSynth.pending) {
+            const utterThis  = new SpeechSynthesisUtterance(enteredText);
+            speechSynth.speak(utterThis);
+        }
+    })
+    </script>
+</body>
+</html>
