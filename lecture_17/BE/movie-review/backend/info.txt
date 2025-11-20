@@ -1,0 +1,4 @@
+add type : module
+for es6 : import statements
+
+//es6 is the set of rules for ecmascript version 6  
