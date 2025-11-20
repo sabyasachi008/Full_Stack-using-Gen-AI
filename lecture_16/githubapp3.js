@@ -43,4 +43,4 @@
 // }
 
 
-console.log(python.localeCompare(javascript))
+console.log(('python').localeCompare('zavascript'))     //this means that python is smaller than zavascript hence -1
