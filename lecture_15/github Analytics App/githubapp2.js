@@ -7,10 +7,11 @@
 
 
 const searchBox = document.getElementById('searchbx');
-const resultDiv = document.getElementById('result');
+let resultDiv = document.getElementById('result');
 
 let searchTimeout = null;
 
+let searchSection = document.
 searchBox.addEventListener('input', () => {
     clearTimeout(searchTimeout);
 
@@ -51,8 +52,9 @@ async function  searchUser(query) {
                 <th>ID</th>
                 <th>Avatar</th>
                 <th>UserName</th>
-                <th>GitHub Profile</th>
+                <th>Profile</th>
                 <th>Type</th>
+                <th>Repos</th>
             </tr>
            ${users.map(user => `
                 <tr>
@@ -60,7 +62,8 @@ async function  searchUser(query) {
                     <td><img src="${user.avatar_url}" width="40" height="40"></td>
                     <td>${user.login}</td>
                     <td><a href="${user.html_url}" target="_blank"><i class="bi bi-github"></i></a></td>
-                    <td>${user.type}</td> 
+                    <td>${user.type}</td>
+                    <td><button class="btn btn-info" onckick="loadRepos('${user.login}')">View</button></td>
                 </tr>
            `).join('')}
            </table>
@@ -69,3 +72,4 @@ async function  searchUser(query) {
         console.log(error);
     }
 }
+
