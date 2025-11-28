@@ -85,14 +85,37 @@ app.post("/movies/:id/reviews", (req, res) => {
 
     if(!movie) return res.status(404).json({error:"Movie Not Found"});
 
-    //todo
+    if(!user || !rating || !comment) {
+        return res.status(400).json({error:"Missing required fields"});
+    }
+
+    const review = {
+        id :nextReviewId++,
+        user, 
+        rating: Number(rating),
+        comment,
+        createdAt: new Date(),
+    }
+
+    if(!movie.reviews) {
+        movie.reviews = []
+    }
+
+    movie.reviews.push(review);
+
+    return res.status(201).json({message:"Review added successfully", review})
+
 })
 
-
 //get all reviews fr a movie
+app.get("/movies/:id/reviews", (req, res) => {
+    const movieId = Number(req.params.id);
 
-app.post("/movies/:id/reviews", (req, res) => {
+    const movie = movies.find((m) => m.id === movieId);
 
+    if(!movie) return res.status(404).json({error: "Movie not found"});
+
+    res.json(movie.reviews);
 })
 
 //error handling
