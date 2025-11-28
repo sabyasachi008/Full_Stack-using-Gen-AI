@@ -16,5 +16,5 @@
   "devDependencies": {
     "nodemon": "^3.1.11"
   },
-  "description": ""
+  "description": "\"This is a test Movie Server\""
 }
