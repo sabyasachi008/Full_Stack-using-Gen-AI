@@ -1,0 +1,21 @@
+
+Employees often have great ideas or small concerns but don’t share them due to time constraints or lack of a simple platform.Create a lightweight anonymous feedback app where employees can post feedback and upvote others’ messages.
+
+ Tech
+
+Express.js backend
+
+/public static frontend
+
+HTML/JS UI
+
+JSON “db” or in-memory storage
+
+ Features
+
+Add feedback anonymously
+
+Like/upvote feedback
+
+Database of 20 users.
+View top trending feedback
