@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task App</title>
+</head>
+<body>
+    <button>
+
+        
+        <pre id="output"></pre>
+    </button>
+
+    <script>
+
+        const base = "https://localhost:3000/tasks";
+
+        const out = document.getElementById("output");
+
+        async function getTask() {
+            out.textContent = await (await fetch(base+"/1")).text();
+        }
+
+        //here first await is for the async function and the second await is for using fetch
+        async function patchTask() {
+
+            out.textContent = await (await fetch(base+"/1"), {
+                method:"PATCH", 
+                headers:{}, 
+                body:JSON.stringify({done:true})
+            }).text();
+        }
+
+    </script>
+    
+</body>
+</html>
