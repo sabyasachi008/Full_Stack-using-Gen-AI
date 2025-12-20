@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image Upload</title>
+    <style>
+        body{
+            font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+            padding: 20px;
+        }
+        #result img{ width: 200px; margin-top: 10px;}
+    </style>
+</head>
+<body>
+    <h1>Upload Image - Fuzzy Match</h1>
+
+    <input type="file" id="imageInput" />
+    <button type="button" onclick="uploadImage()">Upload</button>
+
+    <h3>Result :</h3>
+    <div id="result">No Upload Yet</div>
+
+    <script src="app.js"></script>
+</body>
+</html>

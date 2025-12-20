@@ -1,0 +1,2 @@
+out aim is to use multer and we will have to create a algoritm using inbuilt libary string similarity and similar result as a output would be shown. Basically AI Mimicing
+ 
