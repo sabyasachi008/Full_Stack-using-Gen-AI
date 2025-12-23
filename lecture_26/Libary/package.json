@@ -1,5 +1,9 @@
 {
-  "name": "backend",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^5.2.1"
+  },
+  "name": "libary",
   "version": "1.0.0",
   "main": "server.js",
   "scripts": {
@@ -8,9 +12,5 @@
   },
   "author": "",
   "license": "ISC",
-  "description": "",
-  "dependencies": {
-    "cors": "^2.8.5",
-    "express": "^5.2.1"
-  }
+  "description": ""
 }
