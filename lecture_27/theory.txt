@@ -1,0 +1,33 @@
+
+
+1. What is the use of bcrypt.js in Authentication ?
+
+The password goes to the server through header. 
+And since when we define header in api it is visible to everyone. So to hide this user level details to anyother person we will use bcrypt.js
+
+2. Without authentication authorization cannot take place.
+-> Without authorization authentication cannot take place.
+
+3. We have used async in app.post("/login", async(req, res)) {}
+-> So that we can work asynchornously. since multiple people utilise the auth at the same time so it's better to make it a async function.
+
+Utilities of Bcrypt-> HashSync & CompareSync
+4.1.Hashsync -> converted the password to hashed password using hashSync function. Hashpassword length -> 8
+4.2.CompareSync-> to compare the current password which is recived in the req.header to the password stored in the DB.
+
+
+5. What is the Secret in JWT and why is it used?
+In simple terms, the JWT secret is a private key used by the server to protect the token from tampering.
+
+6. When with request header comes server authenticates
+//Client sends everything with header
+
+7. Next act's as a middle ware if the token is valid then proceed else move to catch.
+
+8. JSON Web token is divided into 3 parts
+example -> 
+{
+    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InNhYiIsImlhdCI6MTc2NjkyMjcwMiwiZXhwIjoxNzY2OTI2MzAyfQ.FyT5ArMyye3QfTKYOBfjG7IAi8Yw05aCRRRteQMBFGs"
+}
+
+9. This token will be used in as bearer token to authenticate the profile endpoint and thus decode the encypted user-data.
