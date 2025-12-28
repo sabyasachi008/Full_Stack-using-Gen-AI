@@ -1,0 +1,10 @@
+1. Secret is used during JWT authentication. 
+
+2.OTP authentication -> One time password
+//Generate -> Send -> Verify -> Authorise { there will be an route for OTP. And UI will hit in that end point}.
+
+3. Twillio => Fast to messaging. 
+
+4. //Nodemailer -> Sends otp to you mailID -> not sutialble for industry use or scability
+//For using node mailer first the create transporter define service as gmail and set the user: as email address
+and generate a password by going to google settings -> app security -> then create app name it would give password then use that password int the transporter. 
