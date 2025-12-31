@@ -1,0 +1,15 @@
+1.Difference between statefull and stateless Authentication Patterns?
+
+Statefull -> Which maintains state or data or server side.
+State is a data with which we map any thing to maintain it.
+
+Clinet --> Username/Password > server
+Client <-----  Session uid < -- Server
+
+Server can send UID in form of Cookies{used in server side}
+/ Response
+/ headers{mainly used in restAPIs}
+
+
+
+Stateless -> Which has no state
