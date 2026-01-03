@@ -1,0 +1,52 @@
+JWT -> Json Web token -> Signed proof of authentication.
+info transfer between client and server
+
+//Old way -> Server stores the session data, and client sends the session Id
+
+// JWT -> No storing of the session, Client stores token, stateless
+
+// xxxx.yyyy.zzzz
+Header.payload.signature
+
+header -> {
+    //algorithm with which we have encoded information of that 
+
+}
+
+Eg -> 
+header => {
+    alg: "HS256, 
+    type: JWT,     
+}
+
+payload -> {
+    id:'cb',
+    "username":"head345"
+}
+
+signature {
+    header + payload + Secret
+}
+
+JWT Can be read by user but cannot be modified.
+jwt.verify() -> matches signature
+
+Secret is a private KEY for signin and verify jwts.
+
+JWT tokens should always expire -> Hence they are shortlived.
+
+//There are stored in client -> Memory {localstorage} HTTP cookies.
+
+JWT is a stateless signed token which stores in client
+
+The token in JWT is called access token -> user for protected apis, and sent with every call.
+It is stored in FE side localstorage cookies 
+
+Refresh Token -> Used to get new access token, Without loggin in again.
+
+
+Refresh Token is stored (DB/cookies)
+when access token expires -> FE Calls then refresh token is called then new access access token is generated -> user continues.
+
+Why refresh tokens are kept for a longer time?
+-> So that we can get access after we get verified once. In order to avoid multiple logins on the same UserId.
