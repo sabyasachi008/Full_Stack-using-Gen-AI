@@ -11,7 +11,7 @@ const REFRESH_SECRET = ' refresh_secret';
 
 const users = [{
     id:1, 
-    username:"user", 
+    username:"Sab", 
     password: "123"
 }];
 
@@ -35,13 +35,13 @@ app.post("/login", (req, res) => {
         }, 
         ACCESS_SECRET,
         {
-            expiresIn:"15s"
+            expiresIn:"2m"
         }
     );
 
      const refreshToken=jwt.sign(
          {id:user.id},
-        ACCESS_SECRET,
+        REFRESH_SECRET,
         {expiresIn:"7d"}
     )
     refresh_tokens.push(refreshToken)
@@ -72,7 +72,7 @@ function authenticate(req, res, next) {
 
 
 app.get("/profile", authenticate, (req, res)=> {
-    res.json({message:`Welcome ! ${req.username}`})
+    res.json({message:`Welcome ! ${req.user.username}`})
 })
 
 app.listen(3000, ()=> {
