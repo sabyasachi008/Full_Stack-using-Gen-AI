@@ -31,6 +31,7 @@ app.post("/login", (req, res) => {
 
         {
             id:user.id,
+            username: user.username
         }, 
         ACCESS_SECRET,
         {
@@ -58,7 +59,7 @@ function authenticate(req, res, next) {
     const token = authHeader.split(" ")[1];
 
     try {
-        const decoded = jwt.verify(token.ACCESS_SECRET);
+        const decoded = jwt.verify(token, ACCESS_SECRET);
         req.user = decoded;
         next();
     }
