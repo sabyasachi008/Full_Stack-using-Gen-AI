@@ -1,0 +1,8 @@
+Express -> ID Verification
+FireBase -> Token / ID Generatation and authentication with google
+
+//Fire base 
+Step 1 - > Create Project
+Step 2 - > Email/Password
+Step 3 - > Service account -> admin SDK private key -> connection + Download JSON -> firebase authentication
+//We have to install firebase-admin -> Library which helps to connect firebase
