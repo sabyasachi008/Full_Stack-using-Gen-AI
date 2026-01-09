@@ -1,2 +1,29 @@
+# Node.js
 node_modules/
-lecture_33/firebase/firebase-admin.json
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Environment variables
+.env
+
+# Firebase / Google Cloud secrets
+firebase-admin.json
+**/firebase-admin.json
+
+# Firebase config / service account keys
+*.pem
+*.key
+*.json
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# IDEs
+.vscode/
+.idea/
+
+# Logs
+logs/
+*.log
