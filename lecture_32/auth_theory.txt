@@ -1,0 +1,74 @@
+JWT Logout -> JWT Logout -> JWT stateless
+Server does not store session
+Token Destory
+
+Token BlackListing -> Store invalid token and reject them.
+
+const blaclist = new Set();
+
+Short Expiry Tokens -> 
+    jwt.sign() -> we assign the token validity time during signin and it would auto expires
+
+Cookie -> vs Header Based auth
+
+// In header bearer token goes in Authorisation
+
+Cookie -> It is a part of HTTP and it stores the meta data of the session. and customise as per the user.
+
+respone is stored in cookie 
+eg ->
+//XSS-> Cross site scripting
+//What happens that JS cannot read cookie so  
+//res.cookie('token', token {
+
+})
+
+4. Oauth 2.0 -> password, google/github user -> google, 
+google -> code -> server generate token and through token we can login
+passport.use(new GoogleStrategy)
+
+5.Session Store -> this is used in production store. For example redis Session store, it is fast and stores data in distributed manner.
+
+6. Rate limiting -> Protect auth from multiple request.
+
+const rateLimit = require(express-rate-limit);
+
+
+app.post('/login', loginLimiter, loginHandler);
+
+7.Password reset flow ->
+email -> reset link -> token -> new password.
+
+8. Claims -> Admin -> jwt.sign({role:"ADMIN"});
+    Scope => write, read -> jwt.sign({scopes:['read', 'write']});
+claims is the keyword for assigning role.
+
+9. MFA -> Muilti factor authentication
+10. Two factor authentication
+
+11. Zero trust/ mordern auth -> token rotation and short lived tokens 
+
+
+--------Oauth -------------------------
+client ID
+CLIENT_SECRET
+/oauth/google/callback
+
+
+Step 1 -> Redirect to google
+app.get('/auth/google', (req, res)=> {
+    const url = ''                    //url of oauth 2
+
+    new URLSearchparams(
+        CLIENT_ID, 
+        redirect_uri, 
+        respone_type
+        scopes
+        ......
+    )
+})
+
+Step 2 -> Google callback
+
+
+//Same process can be done in Github 
