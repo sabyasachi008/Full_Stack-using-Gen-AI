@@ -1,0 +1,25 @@
+body {
+  background: linear-gradient(168deg, rgb(36, 206, 101), rgb(19, 78, 181));
+  min-height: 100vh;
+  margin:0;
+  display:flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding : 10px;
+}
+
+
+.page {
+  background:linear-gradient(168deg,  rgb(19, 78, 181), rgb(36, 206, 101), rgb(19, 78, 181));
+  width:350px;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+/* change the text and button styles */
