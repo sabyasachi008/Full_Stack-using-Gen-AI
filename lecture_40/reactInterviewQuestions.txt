@@ -1,0 +1,27 @@
+Create a hook to easliy use setTimeout (callback, delay).
+Reset the timer if delay changes
+Donot reset the timer if only callback changes
+
+Custom hooks -> a hook to solve a specific usecase
+
+Q2. Create a hook to get only first render or not
+
+//UseRef -> Stores reference
+//useState -> Handles state changes
+//UseEffect -> ReRenders based on specific values
+
+
+Q3. Create a hook usePrevious() to return the previous value, with intial previous value as undefined.
+
+Q4. It is quite common to see switches and checkboxes in web apps.
+Implement useToggle() to make things easier
+
+Q5. When array is used in React state we need to deal with action such as push and remove.
+Implement useArray() to make life
+
+HW => 
+Polyfill 
+useState, useEffect, useRef -> hook 
+function useState() {
+    //create own internal Implement of the 3 hooks used in React.
+}
