@@ -1,0 +1,38 @@
+#Next vs React
+
+React -> UI Component 
+-> Hooks 
+-> Theory -> Output based Questions -> Online test/ Screening rounds.
+
+React's Drawback -> Client side rendering.
+Backend data is processed in client -> so SEO ranking get's down.
+To handle the issue of SEO ranking there is NextJS
+
+In next JS -> there is file based routing
+and SSR -> Server Side Rendering. -> This concept is called static site generation. 
+Better SEO since intitial load time is less.
+build full web apps.
+File based routing -> In a pages file contains all our files.
+
+EJS -> Template to create a bare minimum code.
+
+
+NEXT JS -> folder structure
+page.tsx -> App.jsx
+layout.tsx -> index.jsx
+
+Linked KeyWord.
+
+link -> prevents automatic page reload
+everything is internally implemented in HTML in client side so it is fast 
+
+Any client interation things like button click toggle is done using CSR -> via Client side rendering to use client side rendering we have to mention "use client" in the begining of the code.
+
+
+For creating Backend Code -> 
+create api folder in-side 
+and inside api create apis for particulars like for user -> create a user folder and inside user folder create route.ts {inside route.ts write your api}
+
+
+//for example reffer to nextApp -> 
+https://github.com/sabyasachi008/NextJS-dashBoard-Project
