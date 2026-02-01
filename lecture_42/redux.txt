@@ -1,0 +1,16 @@
+What is Redux?
+
+Redux is a global container. It stores all the state changes related things. Anything which would be present in the state will be contained in the redux.
+
+-> Redux is the single source of truth.
+-> The things present in redux is actual and real and final.
+
+-> 3 core Princples
+Single stores
+Read only state
+Any changes is performed only by reducer.
+
+To use Redux we have to create a Redux ToolKit and inside it there is everything.
+
+counterSlice -> Slice is used for Reducer purpose.
+CreateSlice -> Inbuilt function which helps in changing. Handles the state change things 
