@@ -1,0 +1,7 @@
+Zomato Landing Page -> Prerequisite.
+UI -> ShadCdn / ChakraUI
+
+MS Teams -> on top microsoft teams they have material UI.
+Write Retrival API.
+Connect to MongoDb
+"use client" -> CSR client Side rendering

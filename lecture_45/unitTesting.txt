@@ -1,0 +1,22 @@
+Unit Testing
+
+Developer -> Makes features which is visible 
+O/A engineering -> Q/A tests these features -> Functional Test, Fit Test, Functional Test
+DevOps -> Ships the whole app to the customer
+
+
+Unit Testing -> 
+AAA patter ->
+Arrange ->  
+Act -> Execute the function or componenet under test/
+Assert -> Compare the actual result with the expected outcome
+
+Link -> "https://medium.com/@eva.matova6/unit-testing-in-react-a-practical-guide-for-frontend-developers-b3362c7151d7"
+
+React is tested using Jest 
+MSW -> Full stack testing
+Nock -> Backend Testing
+
+Jest helps to use the test user Behaviour.
+
+Code Coverage -> How many lines of code is testable or there can be chances of getting bug -> To reduce the the bugs in code.
