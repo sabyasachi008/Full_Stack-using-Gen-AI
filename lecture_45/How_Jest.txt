@@ -1,0 +1,39 @@
+Configuration to Run Jest for vite App
+=>
+Step 1 -> vite.config.js -> should content test setup and should contain 
+// *** \\
+
+/// <reference types="vitest" />
+import { defineConfig } from 'vite'
+import react from '@vitejs/plugin-react'
+
+export default defineConfig({
+  plugins: [react()],
+  test: {
+  environment: 'jsdom',
+  globals: true,
+  setupFiles: './src/setupTests.js',
+  pool: 'threads', 
+}
+})
+
+
+
+Step 2 -> create setupTest.js inside src
+content -> {import '@testing-library/jest-dom';
+}
+
+Step 3 -> Create jsconfig.json in root dir
+content -> {
+  {
+  "compilerOptions": {
+    "types": ["vitest/globals", "@testing-library/jest-dom"]
+  },
+  "include": ["src"]
+}
+}
+
+step 3 -> install all the 
+npm install --save-dev vitest jsdom@22 @testing-library/react @testing-library/jest-dom
+
+run npx vitest / Run button above 'test' keyword in you App.test.jsx file. -> extension for App.jsx and App.test.jsx should be same 
