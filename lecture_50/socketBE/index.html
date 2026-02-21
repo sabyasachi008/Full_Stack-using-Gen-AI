@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    <h2>Web Socket Testing</h2>
+
+<p>Send a ping every five seconds</p>
+<div id="output"></div>
+
+<script>
+    const wsUri = "ws://127.0.0.1:8000";
+    const output = document.getElementById("output");
+
+    const websocket = new WebSocket(wsUri);
+
+    let pingInterval;
+
+    function writeToScreen(message) {
+       output.insertAdjacentHTML("afterbegin", `<p>${new Date().toLocaleTimeString()}: ${message}</p>`);
+
+    }
+
+    function sendMessage(message) {
+        writeToScreen(`SENT: ${message}`);
+        websocket.send(message);
+    }
+
+    websocket.onopen = (e) => {
+        writeToScreen("CONNECTED");
+        sendMessage("PING");
+        pingInterval = setInterval(()=>{
+            sendMessage("PING");
+        }, 5000);
+    };
+
+    websocket.onclose = (e) => {
+        writeToScreen("DISCONNECTED");
+        clearInterval(pingInterval);
+    };
+    websocket.onmessage = (e) => {
+        writeToScreen(`RESPONSE: ${e.data}`);
+    };
+    websocket.onerror = (e)=> {
+        writeToScreen(`ERROR: ${e.message}`);
+    };
+</script>
+</body>
+</html>
+
