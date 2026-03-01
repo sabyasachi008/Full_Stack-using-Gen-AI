@@ -1,0 +1,8 @@
+Prisma generates a cusomized Typescript client based on your database schema.
+
+> Compile time errors : If you try to access a field that doesn't exist or pass the wrong data type(String, where and int is expected). TS will flag it immediately in your editor
+Autocomplete features.
+
+> Next.JS -  App router in next JS is designed to run code on the server by default. Prisma built for Node.JS environment, Making it a perfect match
+
+-> We can call Prisma directly inside React Server Component. This eleminates the need for creating seperate API routes just to fetch data for a page.
